@@ -13,6 +13,8 @@
 
 namespace CONTENIDO\Plugin\MpDevTools\Gui;
 
+use CONTENIDO\Plugin\MpDevTools\MpDevTools;
+
 /**
  * Gui ArrayDetails class.
  */
@@ -81,14 +83,13 @@ class ArrayDetails extends AbstractBase
             return '';
         }
 
-        if (empty($array)) {
+        if (empty($this->array)) {
             $result = '<pre>Array()</pre>';
         } else {
-            $result = print_r($array, true);
-            $textarea = new \cHTMLTextarea(uniqid($this->getModuleName() . '_'));
+            $textarea = new \cHTMLTextarea(uniqid(MpDevTools::getName() . '_'));
             $textarea->setClass('mp_dev_tools_code_area')
                 ->setDisabled(true)
-                ->setValue(print_r($result, true));
+                ->setValue(print_r($this->array, true));
             $result = $textarea->render();
         }
 
