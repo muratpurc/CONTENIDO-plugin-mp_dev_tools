@@ -31,3 +31,4 @@ MSG_TABLE_EXAMPLE=An example of a table with various form elements (checkbox, se
 LBL_TEXTBOX_ROW=Textbox
 LBL_TEXTAREA_ROW=Textarea
 MSG_TEXTAREA_INFO=This is an example of a tooltip.<br><p>Tooltips are a way to provide users with more information<br>which can be viewed with one click when needed.<br><br><strong>HTML Markup</strong> in <span>Tooltips</span> is also possible.</p>
+MSG_MODULE_3=The structure of the module class "MpDevToolsExampleModule" is shown below. The listing is rudimentary and represents the public properties and methods of the class.

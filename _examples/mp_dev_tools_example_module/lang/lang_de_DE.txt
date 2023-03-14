@@ -31,3 +31,4 @@ MSG_TABLE_EXAMPLE=Ein Beispiel für eine Tabelle mit diversen Formularelementen 
 LBL_TEXTBOX_ROW=Textbox
 LBL_TEXTAREA_ROW=Textarea
 MSG_TEXTAREA_INFO=Das ist ein Beispiel für ein Tooltip.<br><p>Mit Tooltips kann man den Benutzern mehr Informationen zur Verfügung stellen,<br>die bei Bedarf über einen Klick angezeigt werden können.<br><br><strong>HTML-Markup</strong> in <span>Tooltips</span> sind auch möglich.</p>
+MSG_MODULE_3=Im Folgenden sieht man die Struktur der Modul-Klasse "MpDevToolsExampleModule". Die Auflistung ist rudimentär und stellt die öffentlichen Eigenschaften und Methoden der Klasse dar.

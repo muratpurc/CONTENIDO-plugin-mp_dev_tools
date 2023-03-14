@@ -1,8 +1,9 @@
-# CONTENIDO plugin "Mp Dev Tools"
+# CONTENIDO CMS plugin "Mp Dev Tools"
 
 ## Description
 
 Contains some helpful features for the development of CONTENIDO modules and plugins.
+Provides the module/plugin developer with tools and makes the work on module/plugin development easier.
 
 ## Requirements
 
@@ -14,14 +15,16 @@ Contains some helpful features for the development of CONTENIDO modules and plug
 - Basic functionality to access request variables ($_GET, $_POST, $_REQUEST, etc.).
 - Basic functionality for modules, both for module inputs and for module outputs.
 - Basic functionality for plugins.
-- Interface to some backend and frontend (client) information.
 - Simplified generation of tables in the module configuration (module input).
 - Simplified generation of expandable and collapsible tables in the module configuration (module input), as known from the "Article List Reloaded" and "Appointment List v3" (Terminliste v3) modules.
 - Easy handling of CMS tokens (CMS_VAR and CMS_VALUE) in module inputs and outputs.
+- Easy access to the most common client information and paths.
+- Easy access to the most common backend information and paths.
+- Generic properties for modules and plugins.
+- Form elements for selecting categories, articles and content types.
 - Fully compatible with CONTENIDO >= 4.10.*.
 - Fully compatible with PHP >= 7.0, also with PHP up to 8.2.
 - In summary, an easier way to program modules and plugins for CONTENIDO CMS.
-
 ## Usage
 
 1. Download release archive (zip)
