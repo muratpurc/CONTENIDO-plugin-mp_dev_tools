@@ -313,7 +313,7 @@ class Request
      *
      * @return bool
      */
-    public function isDptions(): bool
+    public function isOptions(): bool
     {
         return $this->method() === self::METHOD_OPTIONS;
     }
