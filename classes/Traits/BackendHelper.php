@@ -79,7 +79,8 @@ trait BackendHelper
     {
         if ($this->isBackendSession()) {
             return \cSecurity::toString(\cRegistry::getArea() ?? '');
-        };
+        }
+
         return '';
     }
 
@@ -93,7 +94,8 @@ trait BackendHelper
     {
         if ($this->isBackendSession()) {
             return \cSecurity::toString(\cRegistry::getAction() ?? '');
-        };
+        }
+
         return '';
     }
 

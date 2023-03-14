@@ -39,7 +39,7 @@ trait Settings
      *
      * @return string
      */
-    protected function getSettingsNameSpace()
+    protected function getSettingsNameSpace(): string
     {
         return $this->settingsNamespace;
     }
