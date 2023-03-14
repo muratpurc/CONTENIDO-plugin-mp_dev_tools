@@ -1,0 +1,89 @@
+/**
+ * CSS for CONTENIDO plugin "Mp Dev Tools".
+ *
+ * Some styles are borrowed from the CONTENIDO modules
+ * `Article List Reloaded` and `Terminliste v3`.
+ */
+
+.mp_dev_tools_block {
+}
+
+.mp_dev_tools_table {
+}
+
+.mp_dev_tools_fieldset_table fieldset {
+    margin-top: 10px;
+    background-color: #F4F4F4;
+    border: 1px solid #666;
+    padding: 0 0 0 3px;
+}
+
+.mp_dev_tools_fieldset_table fieldset legend {
+    min-height: 26px;
+    line-height: 26px;
+    display: inline-block;
+}
+.mp_dev_tools_fieldset_table fieldset legend.mp_dev_tools_show_more {
+    cursor: pointer;
+}
+
+.mp_dev_tools_fieldset_table fieldset table {
+    width: 100%;
+}
+
+.mp_dev_tools_fieldset_table h4 {
+    font-weight: bold;
+    margin: 7px 0;
+}
+
+.mp_dev_tools_table a.i-link,
+.mp_dev_tools_fieldset_table .mp_dev_tools_content a.i-link {
+    vertical-align: top;
+}
+
+.mp_dev_tools_table .mp_dev_tools_separator,
+.mp_dev_tools_fieldset_table .mp_dev_tools_separator {
+    border-bottom: 1px solid silver;
+}
+
+.mp_dev_tools_table .mp_dev_tools_contrast,
+.mp_dev_tools_fieldset_table .mp_dev_tools_contrast {
+    background-color: #e4e4e4
+}
+
+.mp_dev_tools_table input,
+.mp_dev_tools_table select,
+.mp_dev_tools_fieldset_table input,
+.mp_dev_tools_fieldset_table select {
+    margin-right: 10px;
+}
+
+.mp_dev_tools_fieldset_table .mp_dev_tools_more_button,
+.mp_dev_tools_fieldset_table .mp_dev_tools_more_button2 {
+    margin-right: 5px;
+    text-align: center;
+    border: 1px solid black;
+    line-height: 16px;
+    width: 16px;
+    display: inline-block;
+}
+
+.mp_dev_tools_fieldset_table .mp_dev_tools_more_button {
+    background: #0060B1;
+    color: white;
+}
+
+.mp_dev_tools_fieldset_table .mp_dev_tools_more_button2 {
+    background: white;
+    color: #0060B1;
+}
+
+.mp_dev_tools_fieldset_table span.mp_dev_tools_show_all {
+    display: none;
+}
+
+.mp_dev_tools_block .mp_dev_tools_code_area {
+    font-family: monospace;
+    width: 100%;
+    min-height: 120px;
+}

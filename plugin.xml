@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<plugin>
+
+    <general active="1">
+        <plugin_name>Mp Dev Tools</plugin_name>
+        <plugin_foldername>mp_dev_tools</plugin_foldername>
+        <uuid>67367BAC-232D-24DA-C2B4-AC1C195E4A71</uuid><!-- see https://www.contenido.org/deutsch/technik/tools/uuid-generator/index.html -->
+        <description>Development tools plugin for CONTENIDO CMS</description>
+        <author>Murat Purç</author>
+        <copyright>Murat Purç it-solutions</copyright>
+        <mail>murat@purc.de</mail>
+        <website>https://www.purc.de</website>
+        <version>0.0.1</version>
+    </general>
+
+    <requirements php="7.0.0">
+        <contenido minversion="4.10.0" />
+    </requirements>
+
+    <contenido/>
+
+</plugin>

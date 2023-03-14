@@ -1,0 +1,25 @@
+{
+    "name": "purc/contenido-plugin-mp-dev-tools",
+    "type": "contenido-cms-plugin",
+    "description": "Development tools plugin for CONTENIDO CMS",
+    "keywords": [
+        "CONTENIDO",
+        "cms",
+        "plugin",
+        "module",
+        "development",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Murat Purç",
+            "homepage": "https://www.purc.de"
+        }
+    ],
+    "license": ["GPL-2.0-or-later"],
+    "require-dev": {
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}
