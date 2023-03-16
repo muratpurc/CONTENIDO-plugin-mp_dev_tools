@@ -19,6 +19,9 @@ namespace CONTENIDO\Plugin\MpDevTools\Module;
  * This class handles the access to the special tokens CMS_VAR and CMS_VALUE
  * used in module inputs/outputs.
  *
+ * @property-read int index Token index
+ * @property-read string var Token variable
+ * @property-read mixed value Token value
  */
 class CmsToken
 {
@@ -96,6 +99,26 @@ class CmsToken
     public function __toString(): string
     {
         return \cSecurity::toString($this->getValue());
+    }
+
+    /**
+     * Magic getter for properties index, var, and value.
+     *
+     * @param string $name
+     * @return mixed|null
+     * @throws \cException
+     */
+    public function __get(string $name)
+    {
+        if ($name === 'index') {
+            return $this->getIndex();
+        } elseif ($name === 'var') {
+            return $this->getVar();
+        } elseif ($name === 'value') {
+            return $this->getValue();
+        } else {
+            throw new \cException('Invalid property!');
+        }
     }
 
     /**
