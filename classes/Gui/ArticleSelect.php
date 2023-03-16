@@ -65,7 +65,7 @@ class ArticleSelect extends AbstractBaseSelect
         $selCatArt = explode(',', $selCatArt);
 
         if ($categoryId > 0) {
-            $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__;
+            $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
             $sql = $comment . "
                 SELECT
                     a.title AS title,

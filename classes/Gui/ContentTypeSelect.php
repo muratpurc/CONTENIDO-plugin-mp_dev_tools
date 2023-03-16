@@ -63,7 +63,7 @@ class ContentTypeSelect extends AbstractBaseSelect
         $selCatArt = \cSecurity::toInteger(str_replace('art_', '', $selCatArt));
 
         if ($selCatArt > 0) {
-            $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__;
+            $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
             $sql = $comment . "
                 SELECT
                     a.typeid AS typeid,

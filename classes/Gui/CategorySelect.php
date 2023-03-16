@@ -73,7 +73,7 @@ class CategorySelect extends AbstractBaseSelect
         // Additional database instance if category articles should be added too
         $db = $withArticles ? \cRegistry::getDb() : null;
 
-        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__;
+        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
         $sql = $comment . "
             SELECT
                 a.idcat AS idcat,
@@ -145,7 +145,7 @@ class CategorySelect extends AbstractBaseSelect
      */
     protected function addArticleOptions(int $categoryId, array $selCatArt, string $spaces, \cDb $db)
     {
-        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__;
+        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
         $sql = $comment . "
             SELECT
                 a.title AS title, 

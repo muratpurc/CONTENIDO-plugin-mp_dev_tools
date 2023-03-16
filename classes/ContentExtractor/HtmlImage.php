@@ -91,7 +91,7 @@ class HtmlImage
 
     private function getIdUpl(string $dirName, string $fileName): int
     {
-        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__;
+        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
         $sql = $comment . "
             SELECT `idupl` FROM `%s` WHERE `dirname` = '%s' AND `filename` = '%s'";
         $this->db->query($sql, \cRegistry::getDbTableName('upl'), $dirName, $fileName);
