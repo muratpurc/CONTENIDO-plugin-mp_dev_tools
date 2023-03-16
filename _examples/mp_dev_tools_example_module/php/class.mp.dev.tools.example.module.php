@@ -42,7 +42,7 @@ class MpDevToolsExampleModule extends AbstractBase
     /**
      * Constructor, sets some properties.
      *
-     * @param array $properties Properties array {@see ArticleListReloadedModule::$properties}
+     * @param array $properties Properties array {@see MpDevToolsExampleModule::$properties}
      * @throws cException
      */
     public function __construct(array $properties)
