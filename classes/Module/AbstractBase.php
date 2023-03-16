@@ -91,6 +91,14 @@ abstract class AbstractBase
     private $name;
 
     /**
+     * Module identifier, composition of module id and container number,
+     * the format is `<moduleId>_<containerNumber>`.
+     *
+     * @var string
+     */
+    private $identifier;
+
+    /**
      * Constructor, sets some properties.
      *
      * @param string $name Module name. Should be ideally the module name, known by the system.
@@ -113,6 +121,8 @@ abstract class AbstractBase
             throw new \cException('Module name is empty!');
         }
 
+        $this->identifier = $this->moduleId . '_' . $this->containerNumber;
+
         $this->setSettingsNamespace('module_' . $this->name);
 
         $this->request = \cRegistry::getAppVar('pluginMpDevToolsRequest');
@@ -126,6 +136,25 @@ abstract class AbstractBase
     public function getRequest(): Request
     {
         return $this->request;
+    }
+
+    /**
+     * Returns the module identifier, a composition of module id and container number.
+     * If a key is passed, then it will return the identifier prefixed with the key.
+     *
+     * Return formats are:
+     * - `<moduleId>_<containerNumber>`
+     * - `<key>_<moduleId>_<containerNumber>`
+     *
+     * @param string $key Should be an alphanumeric value, containing additionally
+     *      the characters '_', '-', and '.'.
+     * @return string Module identifier, optionally prefixed with the passed key.
+     *      The return value can be used in id-attributes of HTML elements.
+     */
+    public function getIdentifier(string $key = ''): string
+    {
+        $prefix = !empty($key) ? $key . '_' : '';
+        return $prefix . $this->identifier;
     }
 
     /**
