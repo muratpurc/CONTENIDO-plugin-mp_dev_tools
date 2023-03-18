@@ -48,10 +48,7 @@ class ContentTypeSelect extends AbstractBaseSelect
         string $selCatArt, string $selValue, string $typeRange = '', string $optionLabel = ''
     ): string
     {
-        $this->select = new \cHTMLSelectElement($this->name);
-        foreach ($this->attr as $key => $value) {
-            $this->select->setAttribute($key, $value);
-        }
+        $this->select = $this->createSelectInstance();
 
         if (empty($optionLabel)) {
             $optionLabel = i18n("Please choose");
@@ -59,6 +56,8 @@ class ContentTypeSelect extends AbstractBaseSelect
 
         $option = new \cHTMLOptionElement($optionLabel, '');
         $this->select->appendOptionElement($option);
+
+        $selValue = explode(',', $selValue);
 
         $selCatArt = \cSecurity::toInteger(str_replace('art_', '', $selCatArt));
 
@@ -106,7 +105,7 @@ class ContentTypeSelect extends AbstractBaseSelect
                 #$description = i18n($this->db->f("description"));
 
                 $option = new \cHTMLOptionElement($content, $identifier);
-                if ($selValue == $identifier) {
+                if (in_array($identifier, $selValue)) {
                     $option->setSelected(true);
                 }
                 $this->select->appendOptionElement($option);
@@ -115,7 +114,7 @@ class ContentTypeSelect extends AbstractBaseSelect
             $this->select->setDisabled(true);
         }
 
-        return $this->select->render();
+        return parent::renderBase() . $this->select->render();
     }
 
 }

@@ -46,57 +46,64 @@
     // Checkbox
     $cmsCheckboxToken = $module->getCmsToken(0);
     $tplData[] = [
-        'key' => 'Checkbox: ' . $cmsCheckboxToken->getVar(),
-        'value' => $cmsCheckboxToken->getValue(),
+        'key' => mi18n("LBL_CHECKBOX_ROW") . ': ' . $cmsCheckboxToken->var,
+        'value' => $cmsCheckboxToken->value,
     ];
 
     // Select
     $cmsSelectToken = $module->getCmsToken(1);
     $tplData[] = [
-        'key' => 'Selectbox: ' . $cmsSelectToken->getVar(),
-        'value' => $cmsSelectToken->getValue(),
+        'key' => mi18n("LBL_SELECT_ROW") . ': ' . $cmsSelectToken->var,
+        'value' => $cmsSelectToken->value,
     ];
 
     // Radio
     $cmsRadioButtonToken = $module->getCmsToken(2);
     $tplData[] = [
-        'key' => 'Radio button: ' . $cmsRadioButtonToken->getVar(),
-        'value' => $cmsRadioButtonToken->getValue(),
+        'key' => mi18n("LBL_RADIO_ROW") . ': ' . $cmsRadioButtonToken->var,
+        'value' => $cmsRadioButtonToken->value,
     ];
 
     // Textbox
     $cmsTextToken = $module->getCmsToken(3);
     $tplData[] = [
-        'key' => 'Textbox: ' . $cmsTextToken->getVar(),
-        'value' => $cmsTextToken->getValue(),
+        'key' => mi18n("LBL_TEXTBOX_ROW") . ': ' . $cmsTextToken->var,
+        'value' => $cmsTextToken->value,
     ];
 
     // Textarea
     $cmsTextareaToken = $module->getCmsToken(4);
     $tplData[] = [
-        'key' => 'Textarea: ' . $cmsTextareaToken->getVar(),
-        'value' => $cmsTextareaToken->getValue(),
+        'key' => mi18n("LBL_TEXTAREA_ROW") . ': ' . $cmsTextareaToken->var,
+        'value' => $cmsTextareaToken->value,
     ];
 
     // Category select
     $cmsCategoryToken = $module->getCmsToken(10);
     $tplData[] = [
-        'key' => 'Category select: ' . $cmsCategoryToken->getVar(),
-        'value' => $cmsCategoryToken->getValue() . conHtmlentities(' (format is: cat_<idcat> or art_<idcatart>)'),
+        'key' => mi18n("LBL_CATEGORY_SELECT") . ': ' . $cmsCategoryToken->var,
+        'value' => $cmsCategoryToken->value . conHtmlentities(' (' . mi18n("LBL_FORMAT_IS"). ': cat_<idcat> ' . mi18n("LBL_OR") . ' art_<idcatart>)'),
     ];
 
     // Article select
     $cmsArticleToken = $module->getCmsToken(11);
     $tplData[] = [
-        'key' => 'Article select: ' . $cmsArticleToken->getVar(),
-        'value' => $cmsArticleToken->getValue(),
+        'key' => mi18n("LBL_ARTICLE_SELECT") . ': ' . $cmsArticleToken->var,
+        'value' => $cmsArticleToken->value,
     ];
 
     // Content type select
     $cmsContentTypeToken = $module->getCmsToken(12);
     $tplData[] = [
-        'key' => 'Content type select: ' . $cmsContentTypeToken->getVar(),
-        'value' => $cmsContentTypeToken->getValue() . conHtmlentities(' (format is: <idtype>:<typeid>)'),
+        'key' => mi18n("LBL_CONTENT_TYPE_SELECT") . ': ' . $cmsContentTypeToken->var,
+        'value' => $cmsContentTypeToken->value . conHtmlentities(' (' . mi18n("LBL_FORMAT_IS"). ': <idtype>:<typeid>)'),
+    ];
+
+    // Multiple category select
+    $cmsMultipleCategoryToken = $module->getCmsToken(13);
+    $tplData[] = [
+        'key' => mi18n("LBL_MULTIPLE_SELECT") . ': ' . $cmsMultipleCategoryToken->var,
+        'value' => $cmsMultipleCategoryToken->value . conHtmlentities(' (' . mi18n("LBL_FORMAT_IS"). ': ' . mi18n("LBL_VALUE_LIST") . ')'),
     ];
 
     $tpl->assign('data', $tplData);

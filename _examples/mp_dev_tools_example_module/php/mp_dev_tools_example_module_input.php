@@ -144,6 +144,18 @@
         mi18n("LBL_CONTENT_TYPE_SELECT"), $contentTypeSelect
     ]);
 
+    // Multiple select row example
+    $cmsToken = $module->getCmsToken(13);
+    $infoButton = new cGuiBackendHelpbox(mi18n("MSG_MULTIPLE_SELECT"));
+    $categorySelect = $module->getGuiCategorySelect(
+        $cmsToken->var, $module->clientId, $module->languageId,
+        ['multiple' => 'multiple', 'size' => 5]
+    );
+    $fieldsetTable->addRow([
+        mi18n("LBL_MULTIPLE_SELECT"),
+        $categorySelect->render($cmsToken->value) . $infoButton->render()]
+    );
+
     // Row submit button
     $fieldsetTable->addSubmitRow(['', mi18n("SAVE_CHANGES")]);
 

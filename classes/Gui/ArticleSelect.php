@@ -50,10 +50,7 @@ class ArticleSelect extends AbstractBaseSelect
         int $categoryId, string $selCatArt, string $optionLabel = ''
     ): string
     {
-        $this->select = new \cHTMLSelectElement($this->name);
-        foreach ($this->attr as $key => $value) {
-            $this->select->setAttribute($key, $value);
-        }
+        $this->select = $this->createSelectInstance();
 
         if (empty($optionLabel)) {
             $optionLabel = i18n("Please choose");
@@ -105,7 +102,7 @@ class ArticleSelect extends AbstractBaseSelect
             $this->select->setDisabled(true);
         }
 
-        return $this->select->render();
+        return parent::renderBase() . $this->select->render();
     }
 
 }

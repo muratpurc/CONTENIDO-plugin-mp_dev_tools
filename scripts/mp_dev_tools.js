@@ -58,6 +58,26 @@
             }
         }
 
+        /**
+         * Takes over values of a form element (i.e. multiple select)
+         * to another form element (i.e. hidden field).
+         * Values of type array will be taken over as a string, where
+         * the values are comma separated.
+         *
+         * @param {jQuery} $element
+         */
+        function actionTakeoverMultipleValues($element) {
+            var $destination = $('#' + $element.data('field-id')),
+                val = $element.val();
+
+            if ($.type(val) === 'array') {
+                val = val.toString();
+            }
+            $destination.val(val);
+            console.log($element.data('field-id'), $element.val(), $destination.val());
+        }
+
+        // Click handler
         $('[data-mp_dev_tools-action]').live('click', function() {
             var $element = $(this)
                 action = $element.data('mp_dev_tools-action');
@@ -66,6 +86,16 @@
                 return actionSubmit();
             } else if (action === 'mp_dev_tools_toggle_fieldset_table') {
                 actionToggleFieldSetTable($element);
+            }
+        });
+
+        // Change handler
+        $('[data-mp_dev_tools-action-change]').live('change', function() {
+            var $element = $(this)
+                action = $element.data('mp_dev_tools-action-change');
+
+            if (action === 'takeover_multiple_values') {
+                actionTakeoverMultipleValues($element);
             }
         });
     });

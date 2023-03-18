@@ -87,3 +87,8 @@
     width: 100%;
     min-height: 120px;
 }
+
+.mp_dev_tools_block option[selected] {
+    color: white;
+    background-color: #0060B1;
+}

@@ -55,10 +55,7 @@ class CategorySelect extends AbstractBaseSelect
         string $selCatArt = '', bool $isCatDisabled = false, string $optionLabel = ''
     ): string
     {
-        $this->select = new \cHTMLSelectElement($this->name);
-        foreach ($this->attr as $key => $value) {
-            $this->select->setAttribute($key, $value);
-        }
+        $this->select = $this->createSelectInstance();
 
         if (empty($optionLabel)) {
             $optionLabel = i18n("Please choose");
@@ -106,9 +103,10 @@ class CategorySelect extends AbstractBaseSelect
             $spaces = str_repeat(self::LEVEL_SPACER, $this->db->f('level'));
             $identifier = 'cat_' . $idcat;
 
-            $style = 'background-color: #efefef;';
+            $style = [];
+            $style[] = 'background-color: #efefef;';
             if ($this->db->f('visible') == 0 || $this->db->f('public') == 0) {
-                $style .= 'color: #666;';
+                $style[] = 'color: #666;';
             }
 
             $title =  $spaces . '>' . urldecode($this->db->f('name'));
@@ -116,7 +114,7 @@ class CategorySelect extends AbstractBaseSelect
             if (in_array($identifier, $selCat)) {
                 $option->setSelected(true);
             }
-            $option->setStyle($style);
+            $option->setStyle(implode('', $style));
 
             if ($isCatDisabled) {
                 $option->setDisabled(true);
@@ -129,7 +127,7 @@ class CategorySelect extends AbstractBaseSelect
             }
         }
 
-        return $this->select->render();
+        return parent::renderBase() . $this->select->render();
     }
 
     /**
