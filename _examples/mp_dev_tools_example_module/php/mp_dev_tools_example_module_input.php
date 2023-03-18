@@ -55,40 +55,40 @@
 
     // Checkbox row example
     $cmsCheckboxToken = $module->getCmsToken(0); // For CMS_VAR[n], CMS_VALUE[n]
-    $checkbox = new cHTMLCheckbox($cmsCheckboxToken->getVar(), "true");
+    $checkbox = new cHTMLCheckbox($cmsCheckboxToken->var, "true");
     $checkbox->setLabelText(mi18n("LBL_CHECKBOX"))
-        ->setChecked($cmsCheckboxToken->getValue());
+        ->setChecked($cmsCheckboxToken->value);
     $table->addRow([mi18n("LBL_CHECKBOX_ROW"), $checkbox]);
 
     // Select row example
     $cmsSelectToken = $module->getCmsToken(1);
-    $select = new cHTMLSelectElement($cmsSelectToken->getVar());
+    $select = new cHTMLSelectElement($cmsSelectToken->var);
     $select->autofill(['' => mi18n("OPTION_PLEASE_CHOOSE"), "1" => "Foo", "2" => "Bar"])
-        ->setDefault($cmsSelectToken->getValue());
+        ->setDefault($cmsSelectToken->value);
     $table->addRow([mi18n("LBL_SELECT_ROW"), $select]);
 
     // Radio button row example
     $cmsRadioButtonToken = $module->getCmsToken(2);
 
-    $radio1 = new cHTMLRadiobutton($cmsRadioButtonToken->getVar(), 'radio_value_1', '', $cmsRadioButtonToken->getValue() === 'radio_value_1');
+    $radio1 = new cHTMLRadiobutton($cmsRadioButtonToken->var, 'radio_value_1', '', $cmsRadioButtonToken->value === 'radio_value_1');
     $radio1->setLabelText(mi18n("LBL_RADIO_1"));
 
-    $radio2 = new cHTMLRadiobutton($cmsRadioButtonToken->getVar(), 'radio_value_2', '', $cmsRadioButtonToken->getValue() === 'radio_value_2');
+    $radio2 = new cHTMLRadiobutton($cmsRadioButtonToken->var, 'radio_value_2', '', $cmsRadioButtonToken->value === 'radio_value_2');
     $radio2->setLabelText(mi18n("LBL_RADIO_2"));
 
-    $radio3 = new cHTMLRadiobutton($cmsRadioButtonToken->getVar(), 'radio_value_3', '', $cmsRadioButtonToken->getValue() === 'radio_value_3');
+    $radio3 = new cHTMLRadiobutton($cmsRadioButtonToken->var, 'radio_value_3', '', $cmsRadioButtonToken->value === 'radio_value_3');
     $radio3->setLabelText(mi18n("LBL_RADIO_3"));
 
     $table->addFullSeparatorRow([mi18n("LBL_RADIO_ROW"), $radio1 . ' ' . $radio2 . ' ' . $radio3]);
 
     // Textbox row example
     $cmsTextToken = $module->getCmsToken(3);
-    $textbox = new cHTMLTextbox($cmsTextToken->getVar(), $cmsTextToken->getValue());
+    $textbox = new cHTMLTextbox($cmsTextToken->var, $cmsTextToken->value);
     $table->addRow([mi18n("LBL_TEXTBOX_ROW"), $textbox]);
 
     // Textarea row example
     $cmsTextareaToken = $module->getCmsToken(4);
-    $textarea = new cHTMLTextarea($cmsTextareaToken->getVar(), $cmsTextareaToken->getValue());
+    $textarea = new cHTMLTextarea($cmsTextareaToken->var, $cmsTextareaToken->value);
     $infoButton = new cGuiBackendHelpbox(mi18n("MSG_TEXTAREA_INFO"));
     $table->addRow([mi18n("LBL_TEXTAREA_ROW"), $textarea->render() . ' ' . $infoButton->render()]);
 
@@ -113,32 +113,32 @@
     // Row category select
     $cmsCategoryToken = $module->getCmsToken(10);
     $categorySelect = $module->getGuiCategorySelect(
-        $cmsCategoryToken->getVar(), $module->clientId, $module->languageId
+        $cmsCategoryToken->var, $module->clientId, $module->languageId
     );
     $fieldsetTable->addFullSeparatorRow([
-        mi18n("LBL_CATEGORY_SELECT"), $categorySelect->render($cmsCategoryToken->getValue())
+        mi18n("LBL_CATEGORY_SELECT"), $categorySelect->render($cmsCategoryToken->value)
     ]);
 
     // Row article select
-    $selectedCategoryId = cSecurity::toInteger(str_replace('cat_', '', $cmsCategoryToken->getValue()));
+    $selectedCategoryId = cSecurity::toInteger(str_replace('cat_', '', $cmsCategoryToken->value));
     $cmsArticleToken = $module->getCmsToken(11);
     $articleSelect = $module->getGuiArticleSelect(
-        $cmsArticleToken->getVar(), $module->clientId, $module->languageId
+        $cmsArticleToken->var, $module->clientId, $module->languageId
     );
     $fieldsetTable->addFullSeparatorRow([
         mi18n("LBL_ARTICLE_SELECT"),
-        $articleSelect->render($selectedCategoryId, $cmsArticleToken->getValue())
+        $articleSelect->render($selectedCategoryId, $cmsArticleToken->value)
     ]);
 
     // Row content type select
     $cmsContentTypeToken = $module->getCmsToken(12);
     $contentTypeSelect = $module->getGuiContentTypeSelect(
-        $cmsContentTypeToken->getVar(), $module->clientId, $module->languageId
+        $cmsContentTypeToken->var, $module->clientId, $module->languageId
     );
     $contentTypes = $module->getContentTypeIds();
     $contentTypes = implode(',', $contentTypes);
     $contentTypeSelect = $contentTypeSelect->render(
-        $cmsArticleToken->getValue(), $cmsContentTypeToken->getValue(), $contentTypes
+        $cmsArticleToken->value, $cmsContentTypeToken->value, $contentTypes
     );
     $fieldsetTable->addFullSeparatorRow([
         mi18n("LBL_CONTENT_TYPE_SELECT"), $contentTypeSelect
@@ -312,11 +312,11 @@
     $cmsToken = $module->getCmsToken(2);
     $module->addCodeRow($fieldsetTable, '$cmsToken = $module->getCmsToken(2)', $cmsToken);
 
-    $module->addCodeRow($fieldsetTable, '$cmsToken->getIndex()', $cmsToken->getIndex());
+    $module->addCodeRow($fieldsetTable, '$cmsToken->index', $cmsToken->index);
 
-    $module->addCodeRow($fieldsetTable, '$cmsToken->getVar()', $cmsToken->getVar());
+    $module->addCodeRow($fieldsetTable, '$cmsToken->var', $cmsToken->var);
 
-    $module->addCodeRow($fieldsetTable, '$cmsToken->getValue()', $cmsToken->getValue());
+    $module->addCodeRow($fieldsetTable, '$cmsToken->value', $cmsToken->value);
 
 
     // Render fieldset table
