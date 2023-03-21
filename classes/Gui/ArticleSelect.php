@@ -16,6 +16,8 @@
 
 namespace CONTENIDO\Plugin\MpDevTools\Gui;
 
+use CONTENIDO\Plugin\MpDevTools\Module\CmsToken;
+
 /**
  * Article select class.
  */
@@ -37,33 +39,97 @@ class ArticleSelect extends AbstractBaseSelect
     /**
      * Renders an article select box for a specific category.
      *
-     * @param int $categoryId The id of the category to build the article select for.
-     * @param string $selCatArt Selected category article, e.g. 'art_<idcatart>'.
+     * @param int|string $categoryId The id of the category to build the article
+     *       select for, or the string identifier, e.g. 'idcat:<idcat>'.
+     * @param int|string $selCatArt Selected category-article id or the string
+     *      identifier, e.g. 'idcatart:<idcatart>'.
      *      Single value or comma separated values.
-     * @param string $optionLabel Label for the first option.
+     * @param array $parameter Additional parameter as follows:
+     *      [
+     *          'optionLabel' => (string) Label for the first option.
+     *          'noFirstOption' => (bool) Flag to not render the first option. Default `false`.
+     *      ]
      * @return string
      * @throws \cDbException
      * @throws \cException
      * @throws \cInvalidArgumentException
      */
     public function render(
-        int $categoryId, string $selCatArt, string $optionLabel = ''
+        $categoryId, string $selCatArt, array $parameter = []
     ): string
     {
-        $this->select = $this->createSelectInstance();
+        $this->initializeSelect($parameter);
 
-        if (empty($optionLabel)) {
-            $optionLabel = i18n("Please choose");
-        }
+        $selCatArt = explode(self::VALUES_DELIMITER, $selCatArt);
+        array_map(function ($item) {
+            $idcatat = self::toCategoryArticleId($item);
+            if ($idcatat > 0) {
+                return $idcatat;
+            }
+        }, $selCatArt);
 
-        $option = new \cHTMLOptionElement($optionLabel, '');
-        $this->select->appendOptionElement($option);
-
-        $selCatArt = explode(',', $selCatArt);
+        $categoryId = CategorySelect::toCategoryId($categoryId);
 
         if ($categoryId > 0) {
-            $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
-            $sql = $comment . "
+            $this->addArticleOptions($categoryId, $selCatArt, 0, $this->db);
+        } else {
+            $this->select->setDisabled(true);
+        }
+
+        return parent::renderBase() . $this->select->render();
+    }
+
+    /**
+     * Converts passed value to category-article id.
+     *
+     * @param int|string $value The category-article id or the string identifier, e.g. `idcatart:<idcatart>`.
+     * @return int
+     */
+    public static function toCategoryArticleId($value): int
+    {
+        return CategorySelect::toCategoryArticleId($value);
+    }
+
+    /**
+     * Returns the selected values.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return int[] List of selected article ids (idcatart)
+     */
+    public static function getSelectedValues($value): array
+    {
+        $rawValue = self::getSelectedRawValue($value);
+        $return = [];
+
+        // 'idcatart:<idcatart>'
+        $values = explode(self::VALUES_DELIMITER, $rawValue);
+        foreach ($values as $item) {
+            if (is_numeric($item)) {
+                $return[] = \cSecurity::toInteger($item);
+            } else {
+                $itemIdValues = explode(self::ITEM_ID_VALUES_DELIMITER, $item);
+                if (count($itemIdValues) === 2 && $itemIdValues[0] === 'idcatart') {
+                    $return[] = \cSecurity::toInteger($itemIdValues[1]);
+                }
+            }
+        }
+
+        return $return;
+    }
+
+    /**
+     * Selects the articles of the passed category and adds them to the select box.
+     *
+     * @param int $categoryId
+     * @param array $selCatArt
+     * @param int $level
+     * @param \cDb|null $db
+     * @return void
+     */
+    protected function addArticleOptions(int $categoryId, array $selCatArt, int $level, \cDb $db = null)
+    {
+        $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
+        $sql = $comment . "
                 SELECT
                     a.title AS title,
                     b.idcatart AS idcatart,
@@ -75,34 +141,39 @@ class ArticleSelect extends AbstractBaseSelect
                     a.online = 1 AND
                     b.idcat = " . $categoryId . " AND
                     a.idart = b.idart AND
-                    a.idlang = " . $this->languageId;
+                    a.idlang = " . $this->languageId . "
+                ORDER BY a.title
+            ";
 
-            $this->db->query($sql);
+        $db->query($sql);
 
-            if ($this->db->numRows() == 0) {
-                $this->select->setDisabled(true);
-            }
-
-            while ($this->db->nextRecord()) {
-                $idcatart = \cSecurity::toInteger($this->db->f('idcatart'));
-
-                $title = substr(urldecode($this->db->f('title')), 0, 32);
-
-                $option = new \cHTMLOptionElement($title, $idcatart);
-                if (in_array($idcatart, $selCatArt)) {
-                    $option->setSelected(true);
-                }
-                if ($this->db->f('online') == 0) {
-                    $option->setStyle('color: #666;');
-                }
-
-                $this->select->appendOptionElement($option);
-            }
-        } else {
+        if ($db->numRows() == 0) {
             $this->select->setDisabled(true);
         }
 
-        return parent::renderBase() . $this->select->render();
+        $indent = $this->getSpacer($level + 1);
+
+        while ($db->nextRecord()) {
+            $identifier = \cSecurity::toInteger($db->f('idcatart'));
+
+            $cssClasses = [];
+            if ($db->f('online') == 0) {
+                $cssClasses[] = 'mp_dev_tools_option_limited';
+            }
+
+            $title = $indent . substr(urldecode($db->f('title')), 0, 32);
+            $option = new \cHTMLOptionElement($title, $identifier);
+
+            if (in_array($identifier, $selCatArt)) {
+                $option->setSelected(true);
+            }
+
+            if (!empty($cssClasses)) {
+                $option->setClass(implode(' ', $cssClasses));
+            }
+
+            $this->select->appendOptionElement($option);
+        }
     }
 
 }

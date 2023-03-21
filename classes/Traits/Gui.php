@@ -21,6 +21,8 @@ use CONTENIDO\Plugin\MpDevTools\Gui\Div;
 use CONTENIDO\Plugin\MpDevTools\Gui\FieldsetTable;
 use CONTENIDO\Plugin\MpDevTools\Gui\ObjectDetails;
 use CONTENIDO\Plugin\MpDevTools\Gui\Table;
+use CONTENIDO\Plugin\MpDevTools\Gui\UploadSelect;
+use CONTENIDO\Plugin\MpDevTools\Module\CmsToken;
 
 /**
  * Gui trait.
@@ -89,6 +91,19 @@ trait Gui
     }
 
     /**
+     * Returns selected values of a Gui\ArticleSelect.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return int[] List of selected article ids (idcatart)
+     */
+    public function getGuiArticleSelectValues(
+        $value
+    ): array
+    {
+        return ArticleSelect::getSelectedValues($value);
+    }
+
+    /**
      * Returns new Gui\CategorySelect instance.
      *
      * See {@see CategorySelect::__construct()}.
@@ -108,6 +123,20 @@ trait Gui
     }
 
     /**
+     * Returns selected values of a Gui\CategorySelect.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return array List of values where each item can be
+     *      `['idcat' => (int)]` or `['idcatart' => (int)]`.
+     */
+    public function getGuiCategorySelectValues(
+        $value
+    ): array
+    {
+        return CategorySelect::getSelectedValues($value);
+    }
+
+    /**
      * Returns new Gui\ContentTypeSelect instance.
      *
      * See {@see ContentTypeSelect::__construct()}.
@@ -124,6 +153,53 @@ trait Gui
     ): ContentTypeSelect
     {
         return new ContentTypeSelect($name, $clientId, $languageId, $attr, $db);
+    }
+
+    /**
+     * Returns selected values of a Gui\ContentTypeSelect.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return array List of values where each item is
+     *      `['idtype' => (int), 'typeid' => (int)]`.
+     */
+    public function getGuiContentTypeSelectValues(
+        $value
+    ): array
+    {
+        return ContentTypeSelect::getSelectedValues($value);
+    }
+
+    /**
+     * Returns new Gui\UploadSelect instance.
+     *
+     * See {@see ContentTypeSelect::__construct()}.
+     *
+     * @param string $name
+     * @param int $clientId
+     * @param int $languageId
+     * @param array $attr
+     * @param \cDb|null $db
+     * @return UploadSelect
+     */
+    public function getGuiUploadSelect(
+        string $name, int $clientId, int $languageId, array $attr = [], \cDb $db = null
+    ): UploadSelect
+    {
+        return new UploadSelect($name, $clientId, $languageId, $attr, $db);
+    }
+
+    /**
+     * Returns selected values of a Gui\UploadSelect.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return array List of values where each item is
+     *      `['idupl' => (int)] or ['iddbfs' => (int)]`.
+     */
+    public function getGuiUploadSelectValues(
+        $value
+    ): array
+    {
+        return UploadSelect::getSelectedValues($value);
     }
 
     /**

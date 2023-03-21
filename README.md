@@ -21,10 +21,12 @@ Provides the module/plugin developer with tools and makes the work on module/plu
 - Easy access to the most common client information and paths.
 - Easy access to the most common backend information and paths.
 - Generic properties for modules and plugins.
-- Form elements for selecting categories, articles and content types.
+- Form elements for selecting categories, articles, content types, and upload files.
+- Easy access to ids of selected categories, articles, content types, and upload files.
 - Fully compatible with CONTENIDO >= 4.10.*.
 - Fully compatible with PHP >= 7.0, also with PHP up to 8.2.
 - In summary, an easier way to program modules and plugins for CONTENIDO CMS.
+
 ## Usage
 
 1. Download release archive (zip)
@@ -32,6 +34,15 @@ Provides the module/plugin developer with tools and makes the work on module/plu
 2. Install it using the PIM (Plugin Manager) in CONTENIDO backend
 
 3. Use it in your modules or plugins
+
+## Settings
+
+Settings used by the plugin, which can be defined on user, group, client or system level.
+
+|Type|Name|Description| Default                             |
+|----|----|-----------|-------------------------------------|
+|plugin_mp_dev_tools|select_option_folder_symbol|The symbol to represent a folder for the upload select (drop-down). This can be any character, unicode character, or HTML entity, but not HTML markup. | "\&#128193;" HTML entity for folder |
+
 
 ## Module example
 

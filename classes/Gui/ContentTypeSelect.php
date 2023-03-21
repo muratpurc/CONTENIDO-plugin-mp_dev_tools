@@ -16,6 +16,8 @@
 
 namespace CONTENIDO\Plugin\MpDevTools\Gui;
 
+use CONTENIDO\Plugin\MpDevTools\Module\CmsToken;
+
 /**
  * Content type select class.
  */
@@ -35,33 +37,33 @@ class ContentTypeSelect extends AbstractBaseSelect
     }
 
     /**
-     * @param string $selCatArt Selected category article, format is 'art_<idcatart>'.
+     * Renders a content-type select box.
+     *
+     * @param string $selCatArt Selected category article, format is 'idcatart:<idcatart>'.
      * @param string $selValue The selected value, format is '<idtype>:<typeid>'.
-     * @param string $typeRange Single content type id (idtype) or comma separated list of ids, e.g. '1,2,3,4'
-     * @param string $optionLabel Label for the first option.
+     * @param array $parameter Additional parameter as follows:
+     *      [
+     *          'optionLabel' => (string) Label for the first option.
+     *          'noFirstOption' => (bool) Flag to not render the first option. Default `false`.
+     *          'typeRange' => (string) Content type to render, single content type id (idtype)
+     *              or comma separated list of ids, e.g. '1,2,3,4'.
+     *      ]
      * @return string
      * @throws \cDbException
      * @throws \cException
      * @throws \cInvalidArgumentException
      */
     public function render(
-        string $selCatArt, string $selValue, string $typeRange = '', string $optionLabel = ''
+        string $selCatArt, string $selValue, array $parameter = []
     ): string
     {
-        $this->select = $this->createSelectInstance();
+        $this->initializeSelect($parameter);
 
-        if (empty($optionLabel)) {
-            $optionLabel = i18n("Please choose");
-        }
+        $selValue = explode(self::VALUES_DELIMITER, $selValue);
+        $selCatArt = ArticleSelect::getSelectedValues($selCatArt);
+        $typeRange = $this->getParameter('typeRange', '');
 
-        $option = new \cHTMLOptionElement($optionLabel, '');
-        $this->select->appendOptionElement($option);
-
-        $selValue = explode(',', $selValue);
-
-        $selCatArt = \cSecurity::toInteger(str_replace('art_', '', $selCatArt));
-
-        if ($selCatArt > 0) {
+        if (count($selCatArt) > 0) {
             $comment = '-- ' . __CLASS__ . '->' . __FUNCTION__ . '()';
             $sql = $comment . "
                 SELECT
@@ -84,7 +86,7 @@ class ContentTypeSelect extends AbstractBaseSelect
             if ($typeRange != '') {
                 $sql .= "a.idtype IN (" . $typeRange . ") AND ";
             }
-            $sql .= "     c.idcatart = " . $selCatArt . "
+            $sql .= "     c.idcatart IN (" . implode(',', $selCatArt) . ")
               ORDER BY a.idtype, a.typeid";
 
             $this->db->query($sql);
@@ -99,7 +101,7 @@ class ContentTypeSelect extends AbstractBaseSelect
                 $value = $this->db->f('value');
 
                 // Identifier format: <idtype>:<typeid>
-                $identifier = $idtype . ':' . $typeid;
+                $identifier = $idtype . self::ITEM_ID_VALUES_DELIMITER . $typeid;
                 $content = !empty($value) ? substr(strip_tags(urldecode($value)), 0, 20) . '...' : '';
                 $content = $this->db->f('type') . '[' . $typeid . ']: ' . $content;
                 #$description = i18n($this->db->f("description"));
@@ -115,6 +117,33 @@ class ContentTypeSelect extends AbstractBaseSelect
         }
 
         return parent::renderBase() . $this->select->render();
+    }
+
+    /**
+     * Returns the selected values.
+     *
+     * @param CmsToken|string $value CmsToken instance, or the token value.
+     * @return array List of values where each item is
+     *      `['idtype' => (int), 'typeid' => (int)]`.
+     */
+    public static function getSelectedValues($value): array
+    {
+        $rawValue = self::getSelectedRawValue($value);
+        $return = [];
+
+        // '<idtype>:<typeid>'
+        $values = explode(self::VALUES_DELIMITER, $rawValue);
+        foreach ($values as $item) {
+            $itemIdValues = explode(self::ITEM_ID_VALUES_DELIMITER, $rawValue);
+            if (count($itemIdValues) === 2) {
+                $return[] = [
+                    'idtype' => \cSecurity::toInteger($itemIdValues[0]),
+                    'typeid' => \cSecurity::toInteger($itemIdValues[1]),
+                ];
+            }
+        }
+
+        return $return;
     }
 
 }

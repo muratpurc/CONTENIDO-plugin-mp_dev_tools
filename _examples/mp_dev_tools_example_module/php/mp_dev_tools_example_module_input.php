@@ -36,7 +36,7 @@
         'debug' => false,
         'db' => cRegistry::getDb(),
         'i18n' => [
-            'LBL_RESULT' => mi18n('LBL_RESULT')
+            'LBL_RESULT' => mi18n("LBL_RESULT")
         ],
         'myCustomProperty' => 'Value of my custom property',
     ]);
@@ -120,14 +120,13 @@
     ]);
 
     // Row article select
-    $selectedCategoryId = cSecurity::toInteger(str_replace('cat_', '', $cmsCategoryToken->value));
     $cmsArticleToken = $module->getCmsToken(11);
     $articleSelect = $module->getGuiArticleSelect(
         $cmsArticleToken->var, $module->clientId, $module->languageId
     );
     $fieldsetTable->addFullSeparatorRow([
         mi18n("LBL_ARTICLE_SELECT"),
-        $articleSelect->render($selectedCategoryId, $cmsArticleToken->value)
+        $articleSelect->render($cmsCategoryToken->value, $cmsArticleToken->value)
     ]);
 
     // Row content type select
@@ -138,7 +137,7 @@
     $contentTypes = $module->getContentTypeIds();
     $contentTypes = implode(',', $contentTypes);
     $contentTypeSelect = $contentTypeSelect->render(
-        $cmsArticleToken->value, $cmsContentTypeToken->value, $contentTypes
+        $cmsArticleToken->value, $cmsContentTypeToken->value, ['typeRange' => $contentTypes]
     );
     $fieldsetTable->addFullSeparatorRow([
         mi18n("LBL_CONTENT_TYPE_SELECT"), $contentTypeSelect
@@ -152,9 +151,19 @@
         ['multiple' => 'multiple', 'size' => 5]
     );
     $fieldsetTable->addRow([
-        mi18n("LBL_MULTIPLE_SELECT"),
+        mi18n("LBL_MULTIPLE_CATEGORY_SELECT"),
         $categorySelect->render($cmsToken->value) . $infoButton->render()]
     );
+
+    // Row upload select
+    $cmsUploadToken = $module->getCmsToken(14);
+    $uploadSelect = $module->getGuiUploadSelect(
+        $cmsUploadToken->var, $module->clientId, $module->languageId
+    );
+    $fieldsetTable->addFullSeparatorRow([
+        mi18n("LBL_UPLOAD_SELECT"),
+        $uploadSelect->render('', $cmsUploadToken->value)
+    ]);
 
     // Row submit button
     $fieldsetTable->addSubmitRow(['', mi18n("SAVE_CHANGES")]);
@@ -185,7 +194,7 @@
         'debug' => false,
         'db' => cRegistry::getDb(),
         'i18n' => [
-            'LBL_RESULT' => mi18n('LBL_RESULT')
+            'LBL_RESULT' => mi18n(\"LBL_RESULT\")
         ],
         'myCustomProperty' => 'Value of my custom property',
     ]);
@@ -313,11 +322,13 @@
     $module->addCodeRow($fieldsetTable, '$cmsToken = $module->getCmsToken(2)', $cmsToken);
 
     $module->addCodeRow($fieldsetTable, '$cmsToken->index', $cmsToken->index);
+    $module->addCodeRow($fieldsetTable, '$cmsToken->getIndex()', $cmsToken->getIndex());
 
     $module->addCodeRow($fieldsetTable, '$cmsToken->var', $cmsToken->var);
+    $module->addCodeRow($fieldsetTable, '$cmsToken->getVar()', $cmsToken->getVar());
 
     $module->addCodeRow($fieldsetTable, '$cmsToken->value', $cmsToken->value);
-
+    $module->addCodeRow($fieldsetTable, '$cmsToken->value', $cmsToken->value);
 
     // Render fieldset table
     echo $fieldsetTable->render();

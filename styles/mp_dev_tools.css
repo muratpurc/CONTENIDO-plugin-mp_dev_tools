@@ -88,6 +88,23 @@
     min-height: 120px;
 }
 
+.mp_dev_tools_option_optgroup {
+    background-color: #efefef;
+    font-weight: bold;
+}
+
+.mp_dev_tools_option_group {
+    background-color: #efefef;
+}
+
+.mp_dev_tools_option_limited {
+    color: #666;
+}
+
+.mp_dev_tools_color_warn {
+    color: orange;
+}
+
 .mp_dev_tools_block option[selected] {
     color: white;
     background-color: #0060B1;
