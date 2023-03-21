@@ -12,6 +12,7 @@
  */
 
 use CONTENIDO\Plugin\MpDevTools\Gui\FieldsetTable;
+use CONTENIDO\Plugin\MpDevTools\Gui\Table;
 use CONTENIDO\Plugin\MpDevTools\Module\AbstractBase;
 
 /**
@@ -111,7 +112,7 @@ class MpDevToolsExampleModule extends AbstractBase
      *
      * @return string
      */
-    public function renderModuleInputStyles()
+    public function renderModuleInputStyles(): string
     {
         static $stylesRendered;
 

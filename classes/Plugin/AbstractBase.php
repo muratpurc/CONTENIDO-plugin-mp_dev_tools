@@ -357,7 +357,7 @@ abstract class AbstractBase
      * @throws \cDbException
      * @throws \cInvalidArgumentException
      */
-    public function getPluginInfo()
+    public function getPluginInfo(): \stdClass
     {
         if (!isset($this->pluginInfo)) {
             $this->pluginInfo = new \stdClass();

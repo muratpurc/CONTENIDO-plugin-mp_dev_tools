@@ -105,7 +105,7 @@ class CmsToken
      * Magic getter for properties index, var, and value.
      *
      * @param string $name
-     * @return mixed|null
+     * @return bool|int|string
      * @throws \cException
      */
     public function __get(string $name)

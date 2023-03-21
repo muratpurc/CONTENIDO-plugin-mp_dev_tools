@@ -51,7 +51,6 @@ class ArticleSelect extends AbstractBaseSelect
      *      ]
      * @return string
      * @throws \cDbException
-     * @throws \cException
      * @throws \cInvalidArgumentException
      */
     public function render(
@@ -62,10 +61,7 @@ class ArticleSelect extends AbstractBaseSelect
 
         $selCatArt = explode(self::VALUES_DELIMITER, $selCatArt);
         array_map(function ($item) {
-            $idcatat = self::toCategoryArticleId($item);
-            if ($idcatat > 0) {
-                return $idcatat;
-            }
+            return self::toCategoryArticleId($item);
         }, $selCatArt);
 
         $categoryId = CategorySelect::toCategoryId($categoryId);
@@ -125,6 +121,8 @@ class ArticleSelect extends AbstractBaseSelect
      * @param int $level
      * @param \cDb|null $db
      * @return void
+     * @throws \cDbException
+     * @throws \cInvalidArgumentException
      */
     protected function addArticleOptions(int $categoryId, array $selCatArt, int $level, \cDb $db = null)
     {

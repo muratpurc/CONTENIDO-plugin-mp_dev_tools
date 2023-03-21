@@ -138,6 +138,7 @@ abstract class AbstractBaseSelect extends AbstractBase
      * Creates the first option element for the select box.
      *
      * @return \cHTMLOptionElement|null
+     * @throws \cException
      */
     protected function createFirstOption()
     {
@@ -245,6 +246,8 @@ abstract class AbstractBaseSelect extends AbstractBase
      * defined one from the constant.
      *
      * @return bool|mixed|string|string[]
+     * @throws \cDbException
+     * @throws \cException
      */
     protected function getFolderSymbol()
     {

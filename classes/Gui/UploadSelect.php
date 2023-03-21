@@ -152,6 +152,8 @@ class UploadSelect extends AbstractBaseSelect
      * @param array $files
      * @param array $selUpload
      * @return void
+     * @throws \cDbException
+     * @throws \cException
      */
     private function fillOptions(array $files, array $selUpload)
     {
@@ -276,6 +278,8 @@ class UploadSelect extends AbstractBaseSelect
      *
      * @param string $path The path to filter for.
      * @return int Number of found records.
+     * @throws \cDbException
+     * @throws \cInvalidArgumentException
      */
     private function fetchUploadFiles(string $path): int
     {
@@ -381,6 +385,8 @@ class UploadSelect extends AbstractBaseSelect
      *
      * @param string $path The path to filter for.
      * @return int Number of found records.
+     * @throws \cDbException
+     * @throws \cInvalidArgumentException
      */
     private function fetchDbfsFiles(string $path): int
     {
