@@ -122,6 +122,22 @@ class CmsToken
     }
 
     /**
+     * Magic isset for properties index, var, and value.
+     *
+     * @param string $name
+     * @return bool
+     * @throws \cException
+     */
+    public function __isset(string $name)
+    {
+        if (in_array($name, ['index', 'var', 'value'])) {
+            return true;
+        } else {
+            throw new \cException('Invalid property!');
+        }
+    }
+
+    /**
      * Returns the token index.
      *
      * @return int
