@@ -20,6 +20,7 @@ use CONTENIDO\Plugin\MpDevTools\Gui\ContentTypeSelect;
 use CONTENIDO\Plugin\MpDevTools\Gui\Div;
 use CONTENIDO\Plugin\MpDevTools\Gui\FieldsetTable;
 use CONTENIDO\Plugin\MpDevTools\Gui\ObjectDetails;
+use CONTENIDO\Plugin\MpDevTools\Gui\Tabs;
 use CONTENIDO\Plugin\MpDevTools\Gui\Table;
 use CONTENIDO\Plugin\MpDevTools\Gui\UploadSelect;
 use CONTENIDO\Plugin\MpDevTools\Module\CmsToken;
@@ -200,6 +201,19 @@ trait Gui
     ): array
     {
         return UploadSelect::getSelectedValues($value);
+    }
+
+    /**
+     * Returns new Gui\Tabs instance.
+     *
+     * See {@see Tabs::__construct()}.
+     *
+     * @param array $attr
+     * @return Tabs
+     */
+    public function getGuiTabs(array $attr = []): Tabs
+    {
+        return new Tabs($attr);
     }
 
     /**

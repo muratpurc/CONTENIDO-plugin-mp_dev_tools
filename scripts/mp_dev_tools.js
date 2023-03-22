@@ -98,6 +98,9 @@
                 actionTakeoverMultipleValues($element);
             }
         });
+
+        // Initialize tabs for \CONTENIDO\Plugin\MpDevTools\Gui\Tabs
+        $('.mp_dev_tools_tabs').tabs();
     });
 
 })(Con, Con.$);

@@ -368,7 +368,11 @@
 
     // ##############################################
 
-    // Fieldset table "Client info"
+    // Tab with fieldset table "Client info"
+
+    $tabs = $module->getGuiTabs();
+
+    $tabs->setHeader('client_info', mi18n("LEGEND_CLIENT_INFO"));
 
     $fieldsetTable = $module->getGuiFieldsetTable();
     $fieldsetTable->setLegend('mp_dev_tools_show_all', mi18n("LEGEND_CLIENT_INFO"));
@@ -381,20 +385,29 @@
     $clientInfo = $module->getClientInfo();
     $module->addCodeRow($fieldsetTable, '$clientInfo = $module->getClientInfo()', $module->getClientInfo());
 
-    $fieldsetTable->addContrastRow(
-        [mi18n("COMMON_CLIENT_INFO")], [], [['colspan' => '2']]
-    );
+    $tabs->addContent('client_info', $fieldsetTable);
 
+    // Tab with fieldset table "Common client info"
+
+    $tabs->setHeader('common_client_info', mi18n("COMMON_CLIENT_INFO"));
+
+    $fieldsetTable = $module->getGuiFieldsetTable();
+    $fieldsetTable->setLegend('mp_dev_tools_show_all', mi18n("COMMON_CLIENT_INFO"));
     $module->addCodeRow($fieldsetTable, '$clientInfo->getId()', $clientInfo->getId());
-
     $module->addCodeRow($fieldsetTable, '$clientInfo->getName()', $clientInfo->getName());
-
     $module->addCodeRow($fieldsetTable, '$clientInfo->getErrorSiteCategoryId()', $clientInfo->getErrorSiteCategoryId());
-
     $module->addCodeRow($fieldsetTable, '$clientInfo->getErrorSiteArticleId()', $clientInfo->getErrorSiteArticleId());
 
+    $tabs->addContent('common_client_info', $fieldsetTable);
+
+    // Tab with fieldset table "Client path info"
+
+    $tabs->setHeader('client_path_info', mi18n("CLIENT_PATH_INFO"));
+
+    $fieldsetTable = $module->getGuiFieldsetTable();
+    $fieldsetTable->setLegend('mp_dev_tools_show_all', mi18n("CLIENT_PATH_INFO"));
     $fieldsetTable->addContrastRow(
-        [mi18n("CLIENT_PATH_INFO") . '<br><br>' . mi18n("MSG_CLIENT_PATHS")], [], [['colspan' => '2']]
+        [mi18n("MSG_CLIENT_PATHS")], [], [['colspan' => '2']]
     );
 
     $module->addCodeRow($fieldsetTable, '$clientInfo->getPath()', $clientInfo->getPath());
@@ -449,7 +462,9 @@
 
     $module->addCodeRow($fieldsetTable, '$clientInfo->getVersionPath()', $clientInfo->getVersionPath());
 
-    // Render fieldset table
-    echo $fieldsetTable->render();
+    $tabs->addContent('client_path_info', $fieldsetTable);
+
+    // Render tabs
+    echo $tabs->render();
 
 })();

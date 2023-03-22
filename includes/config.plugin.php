@@ -42,6 +42,7 @@ cAutoload::addClassmapConfig([
     'CONTENIDO\\Plugin\\MpDevTools\\Gui\\ContentTypeSelect' => $pluginClassesPath . '/Gui/ContentTypeSelect.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Gui\\FieldsetTable' => $pluginClassesPath . '/Gui/FieldsetTable.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Gui\\ObjectDetails' => $pluginClassesPath . '/Gui/ObjectDetails.php',
+    'CONTENIDO\\Plugin\\MpDevTools\\Gui\\Tabs' => $pluginClassesPath . '/Gui/Tabs.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Gui\\Table' => $pluginClassesPath . '/Gui/Table.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Gui\\UploadSelect' => $pluginClassesPath . '/Gui/UploadSelect.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Http\\Request' => $pluginClassesPath . '/Http/Request.php',

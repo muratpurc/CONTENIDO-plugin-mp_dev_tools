@@ -1,4 +1,4 @@
-CLIENT_PATH_INFO=Pfadinformationen eines Mandanten.
+CLIENT_PATH_INFO=Pfadinformationen eines Mandanten
 COMMON_CLIENT_INFO=Allgemeine Mandanteninformationen
 LBL_ARTICLE_SELECT=Artikel Selectbox
 LBL_CATEGORY_SELECT=Kategorie Selectbox

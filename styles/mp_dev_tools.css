@@ -82,6 +82,13 @@
     display: none;
 }
 
+.mp_dev_tools_tabs.ui-tabs .ui-tabs-panel {
+    padding: 0;
+}
+.mp_dev_tools_tabs .mp_dev_tools_fieldset_table fieldset {
+    margin-top: 0;
+}
+
 .mp_dev_tools_block .mp_dev_tools_code_area {
     font-family: monospace;
     width: 100%;

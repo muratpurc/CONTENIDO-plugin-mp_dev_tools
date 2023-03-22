@@ -1,4 +1,4 @@
-CLIENT_PATH_INFO=Path information of a client.
+CLIENT_PATH_INFO=Path information of a client
 COMMON_CLIENT_INFO=Common client information
 LBL_ARTICLE_SELECT=Article select box
 LBL_CATEGORY_SELECT=Category select box
