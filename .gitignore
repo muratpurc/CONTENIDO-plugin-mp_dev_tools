@@ -1,5 +1,5 @@
 .idea
-tests/defines.local.php
+tests/setup/defines.local.php
 .phpunit.result.cache
 composer.lock
 vendor
