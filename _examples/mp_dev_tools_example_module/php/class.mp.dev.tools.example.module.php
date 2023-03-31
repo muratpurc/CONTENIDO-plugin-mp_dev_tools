@@ -18,9 +18,9 @@ use CONTENIDO\Plugin\MpDevTools\Module\AbstractBase;
 /**
  * Mp Dev Tools example module class.
  *
- * @property cDb     db                Database instance
- * @property array   i18n              Translation array
- * @property string  myCustomProperty  Custom property
+ * @property cDb     $db                Database instance
+ * @property array   $i18n              Translation array
+ * @property string  $myCustomProperty  Custom property
  */
 class MpDevToolsExampleModule extends AbstractBase
 {

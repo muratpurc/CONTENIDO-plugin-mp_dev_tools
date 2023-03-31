@@ -19,9 +19,9 @@ namespace CONTENIDO\Plugin\MpDevTools\Module;
  * This class handles the access to the special tokens CMS_VAR and CMS_VALUE
  * used in module inputs/outputs.
  *
- * @property-read int index Token index
- * @property-read string var Token variable
- * @property-read mixed value Token value
+ * @property-read int $index Token index
+ * @property-read string $var Token variable
+ * @property-read mixed $value Token value
  */
 class CmsToken
 {

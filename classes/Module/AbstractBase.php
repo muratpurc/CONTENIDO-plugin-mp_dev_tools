@@ -25,18 +25,18 @@ use CONTENIDO\Plugin\MpDevTools\Traits\Settings;
  *
  * Provides common functionality which can be derived and used by other module classes.
  *
- * @property int moduleId Module id (aka `$cCurrentModule` or `$GLOBALS['cCurrentModule']`),
+ * @property int $moduleId Module id (aka `$cCurrentModule` or `$GLOBALS['cCurrentModule']`),
  *      will be set from globals by default.
- * @property int containerNumber Module id (aka `$cCurrentContainer` or `$GLOBALS['cCurrentContainer']`),
+ * @property int $containerNumber Module id (aka `$cCurrentContainer` or `$GLOBALS['cCurrentContainer']`),
  *      will be set from globals by default.
 
- * @property array cfg Global configuration array, will be set from globals by default.
- * @property array cfgClient Clients configuration array, will be set from globals by default.
- * @property int articleId Article id, will be set from globals by default.
- * @property int categoryId Category id, will be set from globals by default.
- * @property int clientId  Client id, will be set from globals by default.
- * @property int languageId Language id, will be set from globals by default.
- * @property bool debug Flag for debugging, `false` by default.
+ * @property array $cfg Global configuration array, will be set from globals by default.
+ * @property array $cfgClient Clients configuration array, will be set from globals by default.
+ * @property int $articleId Article id, will be set from globals by default.
+ * @property int $categoryId Category id, will be set from globals by default.
+ * @property int $clientId  Client id, will be set from globals by default.
+ * @property int $languageId Language id, will be set from globals by default.
+ * @property bool $debug Flag for debugging, `false` by default.
  */
 abstract class AbstractBase
 {

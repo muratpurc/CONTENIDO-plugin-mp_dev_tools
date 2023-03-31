@@ -62,8 +62,8 @@ class ReflectionObject extends \ReflectionObject
 
         // The regex below has one drawback, it can't extract the whole description
         // of a property annotation.
-        // Pattern is: (annotation) (type) (name) (description)
-        $pattern = "#(@property-read|@property-write|@property)\s*([\w-]+)\s*([\w-]+)\s*([a-z0-9, \[\].()_].*)#i";
+        // Pattern is: (annotation) (type) ($name) (description)
+        $pattern = "#(@property-read|@property-write|@property)\s*([\w-]+)\s*([\$\S]+)\s*([a-z0-9, \[\].()_].*)#i";
         preg_match_all($pattern, $docComment, $matches, PREG_PATTERN_ORDER);
 
         if ($matches) {

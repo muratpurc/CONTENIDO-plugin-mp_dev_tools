@@ -26,10 +26,10 @@ use CONTENIDO\Plugin\MpDevTools\Traits\Settings;
  * Provides common functionality which can be derived and used
  * by other plugin classes.
  *
- * @property int clientId  Client id
- * @property int languageId Language id
- * @property array cfg Global configuration array
- * @property array cfgClient Clients configuration array
+ * @property int $clientId  Client id
+ * @property int $languageId Language id
+ * @property array $cfg Global configuration array
+ * @property array $cfgClient Clients configuration array
  */
 #[AllowDynamicProperties]
 abstract class AbstractBase
