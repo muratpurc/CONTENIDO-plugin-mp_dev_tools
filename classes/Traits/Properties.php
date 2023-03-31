@@ -19,6 +19,7 @@ namespace CONTENIDO\Plugin\MpDevTools\Traits;
  * Provides functionality to manage generic properties.
  * Can be used everywhere you need generic properties.
  */
+#[AllowDynamicProperties]
 trait Properties
 {
 

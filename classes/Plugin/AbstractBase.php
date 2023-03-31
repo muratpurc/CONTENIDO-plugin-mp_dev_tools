@@ -31,6 +31,7 @@ use CONTENIDO\Plugin\MpDevTools\Traits\Settings;
  * @property array cfg Global configuration array
  * @property array cfgClient Clients configuration array
  */
+#[AllowDynamicProperties]
 abstract class AbstractBase
 {
 

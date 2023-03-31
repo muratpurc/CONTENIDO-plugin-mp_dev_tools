@@ -349,6 +349,22 @@ class Request
     }
 
     /**
+     * Returns the value of the global `$_SERVER` by the key.
+     *
+     * @param $key
+     * @param $default
+     * @return array|mixed|null
+     */
+    public function server($key = null, $default = null)
+    {
+        if ($key) {
+            return $_SERVER[$key] ?? $default;
+        } else {
+            return $_SERVER ?? $default;
+        }
+    }
+
+    /**
      * Merges GET and POST parameters and returns the result.
      *
      * @return array
@@ -356,21 +372,6 @@ class Request
     private function getParams(): array
     {
         return array_merge($_GET, $_POST);
-    }
-
-    /**
-     * Returns
-     * @param $key
-     * @param $default
-     * @return array|mixed|null
-     */
-    private function server($key = null, $default = null)
-    {
-        if ($key) {
-            return $_SERVER[$key] ?? $default;
-        } else {
-            return $_SERVER ?? $default;
-        }
     }
 
 }
