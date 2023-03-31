@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    bootstrap="tests/setup/bootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    stopOnFailure="false">
+    <php>
+        <ini name="session.use_cookies" value="0" />
+        <ini name="session.use_only_cookies" value="0" />
+        <ini name="session.use_trans_sid" value="0" />
+        <ini name="session.cache_limiter" value="" />
+        <ini name="display_errors" value="true" />
+    </php>
+    <testsuites>
+        <testsuite name="all">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+   </testsuites>
+</phpunit>

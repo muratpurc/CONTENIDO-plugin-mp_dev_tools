@@ -56,6 +56,7 @@ cAutoload::addClassmapConfig([
     'CONTENIDO\\Plugin\\MpDevTools\\Traits\\Gui' => $pluginClassesPath . '/Traits/Gui.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Traits\\Properties' => $pluginClassesPath . '/Traits/Properties.php',
     'CONTENIDO\\Plugin\\MpDevTools\\Traits\\Settings' => $pluginClassesPath . '/Traits/Settings.php',
+    'CONTENIDO\\Plugin\\MpDevTools\\ArrayObject' => $pluginClassesPath . '/ArrayObject.php',
 ]);
 
 // Register request instance as an application variable

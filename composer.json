@@ -17,9 +17,26 @@
         }
     ],
     "license": ["GPL-2.0-or-later"],
+    "config": {
+        "platform": {
+            "php": "7.2"
+        },
+        "sort-packages": true
+    },
     "require-dev": {
+        "phpunit/phpunit": "^8"
     },
     "require": {
         "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4" : {
+            "CONTENIDO\\Plugin\\MpDevTools\\": "classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4" : {
+            "CONTENIDO\\Plugin\\MpDevToolsPHPUnit\\": "tests"
+        }
     }
 }
