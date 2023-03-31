@@ -1,4 +1,5 @@
 .idea
+_data
 tests/setup/defines.local.php
 .phpunit.result.cache
 composer.lock
