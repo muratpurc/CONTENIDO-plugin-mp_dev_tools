@@ -269,7 +269,7 @@ class Request
      */
     public function isAjax(): bool
     {
-        if (strtolower($this->server('X_REQUESTED_WITH', '')) === 'xmlhttprequest') {
+        if (strtolower($this->server('HTTP_X_REQUESTED_WITH', '')) === 'xmlhttprequest') {
             return true;
         } elseif ($this->param('ajax')) {
             return true;
