@@ -8,7 +8,7 @@ Provides the module/plugin developer with tools and makes the work on module/plu
 ## Requirements
 
 - CONTENIDO >= 4.10
-- PHP >= 7.0
+- PHP >= 7.1
 
 ## Features
 
@@ -24,7 +24,7 @@ Provides the module/plugin developer with tools and makes the work on module/plu
 - Form elements for selecting categories, articles, content types, and upload files.
 - Easy access to ids of selected categories, articles, content types, and upload files.
 - Fully compatible with CONTENIDO >= 4.10.*.
-- Fully compatible with PHP >= 7.0, also with PHP up to 8.2.
+- Fully compatible with PHP >= 7.1, also with PHP up to 8.2.
 - In summary, an easier way to program modules and plugins for CONTENIDO CMS.
 
 ## Usage
