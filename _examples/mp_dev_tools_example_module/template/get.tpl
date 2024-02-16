@@ -26,7 +26,7 @@
                     <pre>{$lblValues}:</pre>
                 </td>
                 <td style="padding: 5px 10px">
-                    <pre>{$entry.values|print_r:true}</pre>
+                    <pre>{print_r($entry.values, true)}</pre>
                 </td>
             </tr>
         {/if}
